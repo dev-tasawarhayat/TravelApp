@@ -1,8 +1,6 @@
 # Compiled Java files
 *.class
 
-# JAR files
-*.jar
 
 # Logs
 *.log
