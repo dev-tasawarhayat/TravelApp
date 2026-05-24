@@ -13,9 +13,9 @@ public class Splash extends JFrame implements Runnable {
         setLocationRelativeTo(null);
 
         
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/splash.jpg"));  //to load the image from the resource folder
+        ImageIcon i1 = new ImageIcon(Splash.class.getResource("/icons/splash.jpg"));
         Image i2 = i1.getImage().getScaledInstance(1200, 600, Image.SCALE_DEFAULT); //to scale the image to fit the frame
-        JLabel l1 = new JLabel(i1); 
+        JLabel l1 = new JLabel(new ImageIcon(i2)); 
         ImageIcon i3 = new ImageIcon(i2); //to convert the scaled image back to ImageIcon
         l1.setIcon(i3); //to set the scaled image as the icon of the label
         add(l1);

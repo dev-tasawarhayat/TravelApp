@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -14,9 +15,16 @@ public class Conn {
             // Load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Load database config from file
+            // Load database config - try classpath first (inside JAR), then fall back to file
             Properties p = new Properties();
-            p.load(new FileInputStream("db.properties"));
+            InputStream is = Conn.class.getResourceAsStream("/db.properties");
+            if (is != null) {
+                p.load(is);
+                is.close();
+            } else {
+                // Fallback for development: load from file system
+                p.load(new FileInputStream("db.properties"));
+            }
 
             String url = p.getProperty("url");
             String username = p.getProperty("username");
